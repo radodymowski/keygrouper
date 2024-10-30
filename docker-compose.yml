@@ -1,0 +1,21 @@
+services:
+  db:
+    image: nouchka/sqlite3
+    volumes:
+      - sqlite_db_data:/data
+  web:
+    build: .
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=keygrouper.settings
+    depends_on:
+      - db
+
+volumes:
+  sqlite_db_data:
