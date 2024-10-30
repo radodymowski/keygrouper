@@ -2,7 +2,7 @@ import csv
 
 from django.core.management.base import BaseCommand
 
-from names.serializers import NameGroupSerializer
+from names.models import NameGroup, NameEntity
 from names.services import group_names
 
 
@@ -20,11 +20,8 @@ class Command(BaseCommand):
         name_groups_dict = group_names(names, delimiter="_")
         if options["save"]:
             for name_group_key in name_groups_dict.keys():
-                serializer = NameGroupSerializer(data={
-                    "name": name_group_key,
-                    "entities_keys": name_groups_dict[name_group_key]
-                })
-                if serializer.is_valid():
-                    serializer.create(validated_data=serializer.validated_data)
+                name_group = NameGroup.objects.create(name=name_group_key)
+                entities = [NameEntity(name_group=name_group, name=name) for name in name_groups_dict[name_group_key]]
+                NameEntity.objects.bulk_create(entities)
         else:
             print(name_groups_dict)

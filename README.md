@@ -8,8 +8,9 @@ and moving existing entities between groups.
 ### Installation
 1. Download the project repository.
 2. Run `docker compose up -d`
-3. After the container is up, run `docker compose run web python manage.py createsuperuser` to create your local admin account.
-4. Names from names.csv file should be automatically grouped and populated in the local database.
+3. For prepopulating database with objects based on `names.csv`, run `docker compose run web python manage.py load_names --save`.
+4. After the container is up, run `docker compose run web python manage.py createsuperuser` to create your local admin account.
+5. Names from names.csv file should be automatically grouped and populated in the local database.
 
 ### Usage
 #### Exercise 1
