@@ -1,4 +1,4 @@
-# KeyGrouper v0.1.0
+# KeyGrouper v0.1.1
 
 ### About
 This project implements functionality to group keys stored in a CSV file by the most descriptive prefixes 
@@ -13,11 +13,11 @@ and moving existing entities between groups.
 5. Names from names.csv file should be automatically grouped and populated in the local database.
 
 ### Usage
-#### Exercise 1
+#### Key grouping service
 To check keys grouper demo based on the provided `names.csv` file, run `python manage.py load_names` - the command will
 output JSON-formatted names grouped by prefixes.
 
-#### Exercise 2
+#### REST API
 After running the server, the following endpoints will be available:
 - `http://0.0.0.0:8000/api/token/ POST` for obtaining JWT authentication token. 
 Add it as Bearer token to Authorization headers for accessing the rest of the endpoints.
@@ -34,7 +34,7 @@ Once the server is running, docs are available under `http://0.0.0.0:8000/docs/`
 If the container is already built, simply run `pytest` to run all unit tests.
 
 ### Concepts and follow-up questions
-Some solutiond implemented in this project are designed for demo purposes, to make it simpler. 
+Some solutions implemented in this project are designed for demo purposes, to make it simpler. 
 The default sqlite3 database engine is used, as it is sufficient for a small demo file and simple models. 
 For large datasets, I could think about other solutions -
 e.g. instead of local database, I would consider using some cloud-based database, e.g. AWS DynamoDB - as the database schema 
